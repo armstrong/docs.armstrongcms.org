@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% set title="Welcome" %}
+
+{% block body %}
+<section>
+	<h1>Armstrong Documentation</h1>
+
+	<p>
+		Welcome to the <a href="http://www.armstrongcms.org/">Armstrong</a>
+		documentation.  Here you'll find everything you need to start using
+		Armstrong to build your project.
+	</p>
+</section>
+
+<section>
+	<h2>Getting Started</h2>
+
+	<dl>
+		<dt><a href="{{ pathto("getting-started/30-seconds") }}">30 Second Tour</a></dt>
+		<dd>
+			<p>
+				Curious what Armstrong is all about?  Start here.
+			</p>
+		</dd>
+
+		<dt><a href="{{ pathto("getting-started/5-minutes") }}">5 Minute Tutorial</a></dt>
+		<dd>
+			<p>
+				Less than 5 minutes is all it takes to get your first
+				Armstrong project setup and responding to requests.  This
+				tutorial gets you started and is the jumping off point for
+				everything else in Armstrong.
+			</p>
+		</dd>
+
+		<dt><a href="{{ pathto("getting-started/anatomy") }}">Anatomy of an Armstrong Project</a></dt>
+		<dd>
+			<p>
+				Looking for more in depth information about Armstrong?  This
+				section is your companion to finding your way around your new
+				Armstrong project.
+			</p>
+		</dd>
+	</dl>
+</section>
+
+{% endblock %}
