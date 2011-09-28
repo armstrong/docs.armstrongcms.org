@@ -21,3 +21,20 @@ def deploy():
           "git add .",
           "git commit -m 'update to latest version of docs'",
           "git push armstrong gh-pages")
+
+
+@task
+def serve(port=8000):
+    """Simple HTTP server for the docs"""
+    import os
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
+    import SocketServer
+
+    os.chdir("./build/dirhtml")
+    httpd = SocketServer.TCPServer(("", port), SimpleHTTPRequestHandler)
+
+    try:
+        print "Serving documentation on %d" % port
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
