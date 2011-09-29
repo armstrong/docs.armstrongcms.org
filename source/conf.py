@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Armstrong Platform Documentation'
+project = u'Armstrong Platform'
 copyright = u'2011, Bay Citizen and Texas Tribune'
 
 # The version info for the project you're documenting, acts as replacement for
