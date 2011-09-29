@@ -9,6 +9,7 @@ throughout.
 The first step is initializing a new Armstrong project.  Armstrong projects are a customized Django project layout.  In addition to creating a base project structure, the ``armstrong`` tool can add demo data as well.  We're going to use that feature for this tutorial so you don't have to worry about creating data.  To create a new project type the following in the command line:
 
 .. code-block:: bash
+
     $ armstrong init --template=tutorial mysite
     armstrong initialized!
     $

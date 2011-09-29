@@ -51,6 +51,10 @@
 This installs the <tt class="docutils literal"><span class="pre">armstrong</span></tt> command line tool that we&#8217;re going to be using
 throughout.</p>
 <p>The first step is initializing a new Armstrong project.  Armstrong projects are a customized Django project layout.  In addition to creating a base project structure, the <tt class="docutils literal"><span class="pre">armstrong</span></tt> tool can add demo data as well.  We&#8217;re going to use that feature for this tutorial so you don&#8217;t have to worry about creating data.  To create a new project type the following in the command line:</p>
+<div class="highlight-bash"><pre>$ armstrong init --template=tutorial mysite
+armstrong initialized!
+$</pre>
+</div>
 <p>This creates a project in the directory <tt class="docutils literal"><span class="pre">mysite</span></tt> based on the <tt class="docutils literal"><span class="pre">tutorial</span></tt> template.  Project templates are basic projects that provide a structure and generally some sort of bootstrapping depending on their environment.  For now, just know that the <tt class="docutils literal"><span class="pre">tutorial</span></tt> project template is what we&#8217;re working from.</p>
 <p>The <tt class="docutils literal"><span class="pre">mysite</span></tt> part of the command tells Armstrong where to put your project.  Using that, it&#8217;s in the <tt class="docutils literal"><span class="pre">./mysite</span></tt> directory.  You can use any name you like, but for the rest of this tutorial, I&#8217;m going to assume that you used <tt class="docutils literal"><span class="pre">mysite</span></tt>.</p>
 <div class="section" id="before-you-start-the-server">
