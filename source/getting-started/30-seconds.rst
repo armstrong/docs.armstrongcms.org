@@ -19,7 +19,7 @@ Want to see it in action?  Here's the commands to run:
     cd demo-site
     armstrong runserver
 
-It's the result of a collaboration between the `Texas Tribune`_ and the
+Armstrong is the result of a collaboration between the `Texas Tribune`_ and the
 `Bay Citizen`_ and a grant from the `John S. and James L. Knight Foundation`_.
 
 Up Next
