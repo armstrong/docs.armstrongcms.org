@@ -64,7 +64,7 @@ $</pre>
 ... output from pip ...
 </pre></div>
 </div>
-<p>This makes sure that everything is installed.  Armstrong has are a few dependencies that Armstrong has that are not released on PyPI.</p>
+<p>This makes sure that everything is installed.  Armstrong has a few dependencies that are not released on PyPI.</p>
 <p>Next, you need to configure the database connection.  You can change this by editing the <tt class="docutils literal"><span class="pre">settings/development.py</span></tt> file and adjusting the <tt class="docutils literal"><span class="pre">DATABASE</span></tt> settings.  Armstrong uses separate settings modules for different environments (see <em class="xref std std-ref">getting-started/anatomy/settings</em>), but <tt class="docutils literal"><span class="pre">settings.development</span></tt> is the default one.</p>
 <p>You can use any of the Django database drivers here.  For simplicity, I&#8217;m going to change it to use the sqlite3 backend.  Once I&#8217;ve made the changes, my <tt class="docutils literal"><span class="pre">DATABASE</span></tt> value looks like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>

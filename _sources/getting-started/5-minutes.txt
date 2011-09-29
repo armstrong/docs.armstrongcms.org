@@ -30,7 +30,7 @@ There are a few steps you need to take before you can run any Armstrong project 
     $ pip install -r requirements/project.txt
     ... output from pip ...
 
-This makes sure that everything is installed.  Armstrong has are a few dependencies that Armstrong has that are not released on PyPI.
+This makes sure that everything is installed.  Armstrong has a few dependencies that are not released on PyPI.
 
 Next, you need to configure the database connection.  You can change this by editing the ``settings/development.py`` file and adjusting the ``DATABASE`` settings.  Armstrong uses separate settings modules for different environments (see :ref:`getting-started/anatomy/settings`), but ``settings.development`` is the default one.
 
