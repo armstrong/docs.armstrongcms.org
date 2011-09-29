@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Project Structure &mdash; Armstrong Platform Documentation v11.09.0 documentation</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '11.09.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="Armstrong Platform Documentation v11.09.0 documentation" href="../../" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../">Armstrong Platform Documentation v11.09.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="project-structure">
+<h1>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h1>
+<p>Here&#8217;s what&#8217;s in our new directory.</p>
+<div class="highlight-python"><pre>|~api/
+| |-__init__.py
+| |-api.py
+| `-resources.py
+|~demo/
+| |-demo_database.sqlite3
+| `~fixtures/
+|   `-initial_data.json
+|~fixtures/
+| |-initial_data.json
+|~requirements/
+| |-development.txt
+| `-project.txt
+|~settings/
+| |-__init__.py
+| |-defaults.py
+| |-development.py
+| `-production.py
+|~templates/
+| `-index.html
+|~urls/
+| |-__init__.py
+| |-defaults.py
+| |-development.py
+| `-production.py
+|-wsgi.py</pre>
+</div>
+<p>Let&#8217;s break this down, directory by directory.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">api</span></tt></dt>
+<dd><em>TODO</em></dd>
+<dt><tt class="docutils literal"><span class="pre">demo</span></tt></dt>
+<dd><em>TODO</em></dd>
+<dt><tt class="docutils literal"><span class="pre">fixtures</span></tt></dt>
+<dd><p class="first">Armstrong has some initial data that needs to be created for everything to work.  You can use this directory to add any other fixtures you need for your project.</p>
+<p class="last">Keep in mind that Django doesn&#8217;t automatically add fixtures from inside this directory.  In addition to the normal <tt class="docutils literal"><span class="pre">syncdb</span></tt> and <tt class="docutils literal"><span class="pre">migrate</span></tt> commands, you need to run <tt class="docutils literal"><span class="pre">armstrong</span> <span class="pre">loaddata</span> <span class="pre">./fixtures/&lt;your</span> <span class="pre">fixture&gt;.json</span></tt> in order to load the data.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">requirements</span></tt></dt>
+<dd><p class="first">This contains the <a class="reference external" href="http://www.pip-installer.org/">pip</a> requirements files.  Armstrong creates two for you: <tt class="docutils literal"><span class="pre">development.txt</span></tt> and <tt class="docutils literal"><span class="pre">project.txt</span></tt>.  The development file is where you add any requirements that are only necessary for running in development mode.  The <tt class="docutils literal"><span class="pre">project.txt</span></tt> file is for specifying all of the dependencies of your project.</p>
+<p class="last">Armstrong adds a few dependencies for you out of the box.  The first is the Armstrong version that you used to initialize the new project.  Second is a custom version of <a class="reference external" href="https://github.com/django-mptt/django-mptt">mptt</a> that is unfortunately, not released yet.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">settings</span></tt></dt>
+<dd><p class="first">Armstrong uses a <tt class="docutils literal"><span class="pre">settings</span></tt> module instead of the normal <tt class="docutils literal"><span class="pre">settings.py</span></tt> file.  This allows for greater flexibility and makes composing different settings for different environments much easier.</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">settings</span></tt> module by itself</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">static</span></tt></dt>
+<dd><em>TODO</em></dd>
+<dt><tt class="docutils literal"><span class="pre">templates</span></tt></dt>
+<dd><em>TODO</em></dd>
+<dt><tt class="docutils literal"><span class="pre">urls</span></tt></dt>
+<dd><em>TODO</em></dd>
+<dt><tt class="docutils literal"><span class="pre">wsgi.py</span></tt></dt>
+<dd><em>TODO</em></dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/getting-started/scratch-pad.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li><a href="../../">Armstrong Platform Documentation v11.09.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2011, Bay Citizen and Texas Tribune.
+  Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.8.
+  <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
+
+</div>
+
+
+
+
+
+  </body>
+</html>
