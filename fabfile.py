@@ -20,7 +20,8 @@ def deploy():
           "cp -R build/dirhtml/* .",
           "git add .",
           "git commit -m 'update to latest version of docs'",
-          "git push armstrong gh-pages")
+          "git push armstrong gh-pages",
+          "git checkout master")
 
 
 @task
