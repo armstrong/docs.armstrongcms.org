@@ -47,7 +47,7 @@ You can use any of the Django database drivers here.  For simplicity, I'm going 
 
 This creates a ``demo.db`` directory in the same directory as your project.  The ``project_dir`` function is loaded from ``settings.defaults``.
 
-Now that hte database is configured, you need to create the initial database.  Do that using Django's built-in ``syncdb`` command.
+Now that the database is configured, you need to create the initial database.  Do that using Django's built-in ``syncdb`` command.
 
 .. code-block:: bash
 
