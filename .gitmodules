@@ -1,3 +1,39 @@
 [submodule "source/_themes/armstrong"]
 	path = source/_themes/armstrong
 	url = git://github.com/armstrong/armstrong_sphinx.git
+[submodule "vendor/armstrong.apps.articles"]
+	path = vendor/armstrong.apps.articles
+	url = git://github.com/armstrong/armstrong.apps.articles
+[submodule "vendor/armstrong.apps.content"]
+	path = vendor/armstrong.apps.content
+	url = git://github.com/armstrong/armstrong.apps.content
+[submodule "vendor/armstrong.apps.images"]
+	path = vendor/armstrong.apps.images
+	url = git://github.com/armstrong/armstrong.apps.images
+[submodule "vendor/armstrong.cli"]
+	path = vendor/armstrong.cli
+	url = git://github.com/armstrong/armstrong.cli
+[submodule "vendor/armstrong.hatband"]
+	path = vendor/armstrong.hatband
+	url = git://github.com/armstrong/armstrong.hatband
+[submodule "vendor/armstrong.utils.backends"]
+	path = vendor/armstrong.utils.backends
+	url = git://github.com/armstrong/armstrong.utils.backends
+[submodule "vendor/armstrong.apps.related_content"]
+	path = vendor/armstrong.apps.related_content
+	url = git://github.com/armstrong/armstrong.apps.related_content
+[submodule "vendor/armstrong.core.arm_access"]
+	path = vendor/armstrong.core.arm_access
+	url = git://github.com/armstrong/armstrong.core.arm_access
+[submodule "vendor/armstrong.core.arm_content"]
+	path = vendor/armstrong.core.arm_content
+	url = git://github.com/armstrong/armstrong.core.arm_content
+[submodule "vendor/armstrong.core.arm_layout"]
+	path = vendor/armstrong.core.arm_layout
+	url = git://github.com/armstrong/armstrong.core.arm_layout
+[submodule "vendor/armstrong.core.arm_sections"]
+	path = vendor/armstrong.core.arm_sections
+	url = git://github.com/armstrong/armstrong.core.arm_sections
+[submodule "vendor/armstrong.core.arm_wells"]
+	path = vendor/armstrong.core.arm_wells
+	url = git://github.com/armstrong/armstrong.core.arm_wells
