@@ -46,3 +46,48 @@ A fresh installation of Armstrong installs the following components:
     armstrong.core.arm-wells==1.3.3
     armstrong.hatband==1.2.3
     armstrong.utils.backends==1.0.0
+
+The first package is the main Armstrong release.  Each of the other components are explained below:
+
+``armstrong.apps.articles``
+    .. include:: ../../vendor/armstrong.cli/README.rst
+       :start-line: 2
+       :end-before: Usage
+
+``armstrong.apps.content``
+    **TODO**
+
+``armstrong.apps.images``
+    **TODO**
+
+``armstrong.apps.related-content``
+    **TODO**
+
+``armstrong.cli``
+    .. include:: ../../vendor/armstrong.cli/README.rst
+       :start-line: 2
+       :end-before: Usage
+
+``armstrong.core.arm-access``
+    **TODO**
+
+``armstrong.core.arm-content``
+    **TODO**
+
+``armstrong.core.arm-layout``
+    **TODO**
+
+``armstrong.core.arm-sections``
+    .. include:: ../../vendor/armstrong.core.arm_sections/README.rst
+       :start-line: 2
+       :end-before: Usage
+
+
+``armstrong.core.arm-wells``
+    **TODO**
+
+``armstrong.hatband``
+    **TODO**
+
+``armstrong.utils.backends``
+    **TODO**
