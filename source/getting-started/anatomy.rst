@@ -64,7 +64,7 @@ The first package is the main Armstrong release.  Each of the other components a
        :start-line: 2
        :end-before: Usage
 
-``armstrong.apps.related-content``
+``armstrong.apps.related_content``
     **TODO**
 
 ``armstrong.cli``
@@ -72,22 +72,22 @@ The first package is the main Armstrong release.  Each of the other components a
        :start-line: 2
        :end-before: Usage
 
-``armstrong.core.arm-access``
+``armstrong.core.arm_access``
     **TODO**
 
-``armstrong.core.arm-content``
+``armstrong.core.arm_content``
     **TODO**
 
-``armstrong.core.arm-layout``
+``armstrong.core.arm_layout``
     **TODO**
 
-``armstrong.core.arm-sections``
+``armstrong.core.arm_sections``
     .. include:: ../../vendor/armstrong.core.arm_sections/README.rst
        :start-line: 2
        :end-before: Usage
 
 
-``armstrong.core.arm-wells``
+``armstrong.core.arm_wells``
     **TODO**
 
 ``armstrong.hatband``
