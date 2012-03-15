@@ -78,7 +78,9 @@ The first package is the main Armstrong release.  Each of the other components a
        :end-before: Usage
 
 ``armstrong.core.arm_content``
-    **TODO**
+    .. include:: ../../vendor/armstrong.core.arm_access/README.rst
+       :start-line: 2
+       :end-before: Usage
 
 ``armstrong.core.arm_layout``
     **TODO**
