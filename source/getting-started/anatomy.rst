@@ -50,12 +50,14 @@ A fresh installation of Armstrong installs the following components:
 The first package is the main Armstrong release.  Each of the other components are explained below:
 
 ``armstrong.apps.articles``
-    .. include:: ../../vendor/armstrong.cli/README.rst
+    .. include:: ../../vendor/armstrong.apps.articles/README.rst
        :start-line: 2
        :end-before: Usage
 
 ``armstrong.apps.content``
-    **TODO**
+    .. include:: ../../vendor/armstrong.apps.content/README.rst
+       :start-line: 2
+       :end-before: Usage
 
 ``armstrong.apps.images``
     **TODO**
