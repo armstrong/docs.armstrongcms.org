@@ -99,7 +99,9 @@ The first package is the main Armstrong release.  Each of the other components a
        :end-before: Usage
 
 ``armstrong.hatband``
-    **TODO**
+    .. include:: ../../vendor/armstrong.core.arm_wells/README.rst
+       :start-line: 2
+       :end-before: Usage
 
 ``armstrong.utils.backends``
     **TODO**
