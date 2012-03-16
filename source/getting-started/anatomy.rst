@@ -17,23 +17,31 @@ Assignment
     *TODO*
 
 Backends
-    *TODO*
+    Backends are a callable that can be changed at run-time via configuration.  These are generally used to provide flex-points where there are multiple ways to provide the same information.
+
+Content
+    A ``Content`` model provides a base class
 
 Layout Templates
-    *TODO*
+    Layout templates are templates used by the ``{% render_model %}`` template tag.  They're found inside the ``<template_path>/layout/`` directory and follow the pattern of ``<template_path>/<app_label>/<model>/<layout_name>.html``.
 
 Paywall
     *TODO*
 
 Related Content
-    *TODO*
+    Related content is a generic way to relate two completely separate models without either model having to know about the other.  This is useful for generic code and is used throughout Armstrong.  The flexibility comes with a slight performance hit, but most sites can cache their way out of the performance hit.
 
 Section
-    *TODO*
+    Sections provide a the foundation for a taxonomy for Django sites.  Models opt-in to be included in sections.  Each section has a series of items that it retrieves from the configured backend.  This is generally combined with a *well* to allow "pinning" an item to the top of a section.
 
 Well
-    *TODO*
+    Wells allow you to schedule content to appear at a given place on your site for a given time.  Wells are a particular Well Type and have zero or more Well Nodes.
 
+Well Type
+    Well Types allow you to specify all of the wells you want to use.  A Well Type can have any number of Wells created for it, but current Well for a given Well Type has a start date in the past and either no expiration date or an expiration date in the future.
+
+Well Node
+    Well Nodes are the connection between a Well and any model within Django.  They use a generic foreign key, but have some optimization to help remove some of the inherent inefficiency inside Django.
 
 
 Component Structure
