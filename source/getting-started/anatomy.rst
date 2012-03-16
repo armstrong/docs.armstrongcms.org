@@ -104,4 +104,6 @@ The first package is the main Armstrong release.  Each of the other components a
        :end-before: Usage
 
 ``armstrong.utils.backends``
-    **TODO**
+    .. include:: ../../vendor/armstrong.utils.backends/README.rst
+       :start-line: 2
+       :end-before: Usage
