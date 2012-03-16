@@ -11,7 +11,7 @@ Access Level
     *TODO*
 
 Article
-    *TODO*
+    An article represents one of the core objects inside Armstrong.  It's a title, body, summary, and additional meta data representing the articles on the site.
 
 Assignment
     *TODO*
