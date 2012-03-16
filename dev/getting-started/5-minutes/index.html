@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>5 Minute Tutorial &mdash; Armstrong Platform 11.09.0 documentation</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '11.09.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="Armstrong Platform 11.09.0 documentation" href="../../" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../">Armstrong Platform 11.09.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="minute-tutorial">
+<span id="getting-start-5-minutes"></span><h1>5 Minute Tutorial<a class="headerlink" href="#minute-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>The first thing you need to do is install Armstrong (see <em class="xref std std-ref">installation</em>).
+This installs the <tt class="docutils literal"><span class="pre">armstrong</span></tt> command line tool that we&#8217;re going to be using
+throughout.</p>
+<p>The first step is initializing a new Armstrong project.  Armstrong projects are a customized Django project layout.  In addition to creating a base project structure, the <tt class="docutils literal"><span class="pre">armstrong</span></tt> tool can add demo data as well.  We&#8217;re going to use that feature for this tutorial so you don&#8217;t have to worry about creating data.  To create a new project type the following in the command line:</p>
+<div class="highlight-bash"><pre>$ armstrong init --template=tutorial mysite
+armstrong initialized!
+$</pre>
+</div>
+<p>This creates a project in the directory <tt class="docutils literal"><span class="pre">mysite</span></tt> based on the <tt class="docutils literal"><span class="pre">tutorial</span></tt> template.  Project templates are basic projects that provide a structure and generally some sort of bootstrapping depending on their environment.  For now, just know that the <tt class="docutils literal"><span class="pre">tutorial</span></tt> project template is what we&#8217;re working from.</p>
+<p>The <tt class="docutils literal"><span class="pre">mysite</span></tt> part of the command tells Armstrong where to put your project.  Using that, it&#8217;s in the <tt class="docutils literal"><span class="pre">./mysite</span></tt> directory.  You can use any name you like, but for the rest of this tutorial, I&#8217;m going to assume that you used <tt class="docutils literal"><span class="pre">mysite</span></tt>.</p>
+<div class="section" id="before-you-start-the-server">
+<h2>Before you start the server<a class="headerlink" href="#before-you-start-the-server" title="Permalink to this headline">¶</a></h2>
+<p>There are a few steps you need to take before you can run any Armstrong project for the first time.  Before anything else, you need to make sure all of the requirements are installed.  You do this via <a class="reference external" href="http://www.pip-installer.org/">pip</a> like this inside your <tt class="docutils literal"><span class="pre">mysite</span></tt> directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install -r requirements/project.txt
+... output from pip ...
+</pre></div>
+</div>
+<p>This makes sure that everything is installed.  Armstrong has a few dependencies that are not released on PyPI.</p>
+<p>Next, you need to configure the database connection.  You can change this by editing the <tt class="docutils literal"><span class="pre">settings/development.py</span></tt> file and adjusting the <tt class="docutils literal"><span class="pre">DATABASE</span></tt> settings.  Armstrong uses separate settings modules for different environments (see <em class="xref std std-ref">getting-started/anatomy/settings</em>), but <tt class="docutils literal"><span class="pre">settings.development</span></tt> is the default one.</p>
+<p>You can use any of the Django database drivers here.  For simplicity, I&#8217;m going to change it to use the sqlite3 backend.  Once I&#8217;ve made the changes, my <tt class="docutils literal"><span class="pre">DATABASE</span></tt> value looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+        <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">project_dir</span><span class="p">(</span><span class="s">&#39;demo.db&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This creates a <tt class="docutils literal"><span class="pre">demo.db</span></tt> directory in the same directory as your project.  The <tt class="docutils literal"><span class="pre">project_dir</span></tt> function is loaded from <tt class="docutils literal"><span class="pre">settings.defaults</span></tt>.</p>
+<p>Now that the database is configured, you need to create the initial database.  Do that using Django&#8217;s built-in <tt class="docutils literal"><span class="pre">syncdb</span></tt> command.</p>
+<div class="highlight-bash"><pre>$ armstrong syncdb
+Creating tables ...
+... a lot more out from Django ...
+Installing custom SQL ...
+Installing indexes ...
+No fixtures found.
+$</pre>
+</div>
+<p>Our database is configured and created, now we can start the development server.</p>
+</div>
+<div class="section" id="starting-the-server">
+<h2>Starting the server<a class="headerlink" href="#starting-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Django ships with a built-in development server for testing applications.  That&#8217;s the easiest way to test out everything (see <em class="xref std std-ref">deploying</em> for production deployment tips).</p>
+<p>To start a new server, simply use the <tt class="docutils literal"><span class="pre">runserver</span></tt> command like this.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>armstrong runserver
+Validating models...
+
+0 errors found
+Django version 1.3, using settings <span class="s1">&#39;settings.development&#39;</span>
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</pre></div>
+</div>
+<p>Now you can load the Armstrong welcome page by loading <tt class="docutils literal"><span class="pre">http://127.0.0.1:8000/</span></tt> in your browser.</p>
+</div>
+<div class="section" id="getting-data-into-armstrong">
+<h2>Getting data into Armstrong<a class="headerlink" href="#getting-data-into-armstrong" title="Permalink to this headline">¶</a></h2>
+<p>The default Armstrong screen welcomes you to the system.  There&#8217;s not much there as it&#8217;s a simple direct-to-template view.  You can find it in the <tt class="docutils literal"><span class="pre">urls/defaults.py</span></tt> file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Load the Armstrong &quot;success&quot; page by default</span>
+<span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">TemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s">&quot;index.html&quot;</span><span class="p">)),</span>
+</pre></div>
+</div>
+<p>Directly below that, there&#8217;s a commented out URL pattern.  You can switch to that to use a <tt class="docutils literal"><span class="pre">QuerySetBackedWellView</span></tt> to display some real data.  There&#8217;s a couple of new concepts here that we&#8217;re going to gloss over until <em class="xref std std-ref">getting-started/anatomy</em>–in particular, <em class="xref std std-ref">getting-started/anatomy/wells</em>, and <em class="xref std std-ref">getting-started/anatomy/published-content</em>.</p>
+<p>For now, comment out the <tt class="docutils literal"><span class="pre">TemplateView</span></tt> above and uncomment out the other url pattern so it looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Load the Armstrong &quot;success&quot; page by default</span>
+<span class="c">#url(r&#39;^$&#39;, TemplateView.as_view(template_name=&quot;index.html&quot;)),</span>
+
+<span class="c"># Uncomment out this to change to the the well view</span>
+<span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span>
+    <span class="n">QuerySetBackedWellView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">well_title</span><span class="o">=</span><span class="s">&#39;front_page&#39;</span><span class="p">,</span>
+                                   <span class="n">template_name</span><span class="o">=</span><span class="s">&quot;front_page.html&quot;</span><span class="p">,</span>
+                                   <span class="n">queryset</span><span class="o">=</span><span class="n">Article</span><span class="o">.</span><span class="n">published</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">&#39;front_page&#39;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>There&#8217;s also a line commented out at the top that you need to uncomment.  It&#8217;s the import line for <tt class="docutils literal"><span class="pre">QuerySetBackedWellView</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">armstrong.core.arm_wells.views</span> <span class="kn">import</span> <span class="n">QuerySetBackedWellView</span>
+</pre></div>
+</div>
+<p>Restart your <tt class="docutils literal"><span class="pre">runserver</span></tt> by hitting <tt class="docutils literal"><span class="pre">Control</span> <span class="pre">+</span> <span class="pre">C</span></tt> (shown as <tt class="docutils literal"><span class="pre">^C</span></tt> from here on out), then re-run <tt class="docutils literal"><span class="pre">armstrong</span> <span class="pre">runserver</span></tt>.  Now when you load your page you should get a Django error page with <tt class="docutils literal"><span class="pre">DoesNotExist</span> <span class="pre">at</span> <span class="pre">/</span></tt>.  This is becauase we&#8217;re missing some data.</p>
+<p>The <tt class="docutils literal"><span class="pre">tutorial</span></tt> template ships with some demo data that you can load to bootstrap this process.  Armstrong puts fixtures in its <tt class="docutils literal"><span class="pre">./fixtures/</span></tt> directory.  To load the demo data, stop the server with <tt class="docutils literal"><span class="pre">^C</span></tt> and run this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>armstrong loaddata ./fixtures/demo_data.json
+Installed 202 object<span class="o">(</span>s<span class="o">)</span> from 1 fixture<span class="o">(</span>s<span class="o">)</span>
+</pre></div>
+</div>
+<p>This loads a few sections (the way Armstrong categorizes content), a new well type (the model that allows you to schedule content to appear at a particular place), as well as a bunch of articles and some authors.</p>
+<p>Restart <tt class="docutils literal"><span class="pre">runserver</span></tt> and load the front page.  You&#8217;ll get a page with a bunch of articles of lorem ipsum with titles that have a distinctly Texas flavor because they came from real articles on the <a class="reference external" href="http://www.texastribune.org/">Texas Tribune</a>.</p>
+</div>
+<div class="section" id="editing-data-in-armstrong">
+<h2>Editing Data in Armstrong<a class="headerlink" href="#editing-data-in-armstrong" title="Permalink to this headline">¶</a></h2>
+<p>You can edit the data in Armstrong using it&#8217;s customized version of Django&#8217;s built-in admin.  By default, it&#8217;s available at <tt class="docutils literal"><span class="pre">/admin/</span></tt> of your site.  You can log in using the credentials you created during the <tt class="docutils literal"><span class="pre">syncdb</span></tt> step, or you can run <tt class="docutils literal"><span class="pre">armstrong</span> <span class="pre">createsuperuser</span></tt> to add a new super user if you skipped that step.</p>
+<p>Explore around.  Wells are one of the more powerful concepts inside Armstrong.  Click on the <tt class="docutils literal"><span class="pre">Wells</span></tt> link and load the list of wells.  The demo data adds one&#8212;a well of the type <tt class="docutils literal"><span class="pre">front_page</span></tt>.  That matches up with the <tt class="docutils literal"><span class="pre">well_title</span></tt> value we used in the URL routes earlier.</p>
+<p>Click on the <tt class="docutils literal"><span class="pre">front_page</span></tt> link to load the edit form for that.  There are three boxes with article titles in them.  Reload the main page of the site (<tt class="docutils literal"><span class="pre">http://localhost:8000/</span></tt>), you&#8217;ll see that they&#8217;re the three same articles are the top articles on the site.</p>
+<p>Click the X to remove one of the articles from the Well, click <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">continue</span> <span class="pre">editing</span></tt>, then reload the front page.  The article you removed should no longer be in the top three.</p>
+</div>
+<div class="section" id="where-to-next">
+<h2>Where to next?<a class="headerlink" href="#where-to-next" title="Permalink to this headline">¶</a></h2>
+<p>Now you know how to create a new Armstrong project and a little bit about how they&#8217;re laid out and you&#8217;ve seen the admin interface.  Next up, it&#8217;s time to learn a bit more about how Armstrong is organized and what all of those directories in an Armstrong project are about in <em class="xref std std-ref">getting-started/anatomy</em>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5 Minute Tutorial</a><ul>
+<li><a class="reference internal" href="#before-you-start-the-server">Before you start the server</a></li>
+<li><a class="reference internal" href="#starting-the-server">Starting the server</a></li>
+<li><a class="reference internal" href="#getting-data-into-armstrong">Getting data into Armstrong</a></li>
+<li><a class="reference internal" href="#editing-data-in-armstrong">Editing Data in Armstrong</a></li>
+<li><a class="reference internal" href="#where-to-next">Where to next?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/getting-started/5-minutes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li><a href="../../">Armstrong Platform 11.09.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2011, Bay Citizen and Texas Tribune.
+  Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
+
+</div>
+
+
+
+
+
+  </body>
+</html>
