@@ -5,6 +5,22 @@ Anatomy of Armstrong
 Armstrong is a large project with a lot of moving parts.  This document introduces you to all of those parts and helps you find your around the Armstrong ecosystem.
 
 
+Terms in Armstrong
+------------------
+Article
+    *TODO*
+
+Related Content
+    *TODO*
+
+Section
+    *TODO*
+
+Well
+    *TODO*
+
+
+
 Component Structure
 -------------------
 ``armstrong.apps``
