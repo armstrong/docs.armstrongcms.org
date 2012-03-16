@@ -7,7 +7,19 @@ Armstrong is a large project with a lot of moving parts.  This document introduc
 
 Terms in Armstrong
 ------------------
+Access Level
+    *TODO*
+
 Article
+    *TODO*
+
+Assignment
+    *TODO*
+
+Layout Templates
+    *TODO*
+
+Paywall
     *TODO*
 
 Related Content
