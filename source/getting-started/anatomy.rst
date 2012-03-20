@@ -8,13 +8,13 @@ Armstrong is a large project with a lot of moving parts.  This document introduc
 Terms in Armstrong
 ------------------
 Access Level
-    *TODO*
+    An Access Level corresponds to a class of users. In the most common case, a site will have one Access Level that is free for every user and a single Access Level for paid subscribers.
 
 Article
     An article represents one of the core objects inside Armstrong.  It's a title, body, summary, and additional meta data representing the articles on the site.
 
 Assignment
-    *TODO*
+	An Assignment defines a time period during which users posessing an Access Level are allowed to view a piece of content. They consist of a start date/time, an end date/time, a link to a particular piece of content's access object and an Access Level
 
 Backends
     Backends are a callable that can be changed at run-time via configuration.  These are generally used to provide flex-points where there are multiple ways to provide the same information.
@@ -26,7 +26,7 @@ Layout Templates
     Layout templates are templates used by the ``{% render_model %}`` template tag.  They're found inside the ``<template_path>/layout/`` directory and follow the pattern of ``<template_path>/<app_label>/<model>/<layout_name>.html``.
 
 Paywall
-    *TODO*
+	A paywall is a function that wraps your content detail views and ensures that all users who view a piece of content have the required Access Level. They are configurable to provide a number of different responses to an unauthorized user including redirects, rendering different templates or raising an exception.
 
 Related Content
     Related content is a generic way to relate two completely separate models without either model having to know about the other.  This is useful for generic code and is used throughout Armstrong.  The flexibility comes with a slight performance hit, but most sites can cache their way out of the performance hit.
