@@ -2,21 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 
-    <title>Anatomy of Armstrong &mdash; Armstrong Platform v12.03.0 documentation</title>
+    <title>Anatomy of Armstrong &mdash; Armstrong Platform vv12.03.0 documentation</title>
 
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
 
-    
     <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
@@ -30,7 +27,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
-    <link rel="top" title="Armstrong Platform v12.03.0 documentation" href="../../" /> 
+    <link rel="top" title="Armstrong Platform vv12.03.0 documentation" href="../../" /> 
   </head>
   <body>
     <div class="related">
@@ -39,7 +36,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex/" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../../">Armstrong Platform v12.03.0 documentation</a> &raquo;</li> 
+        <li><a href="../../">Armstrong Platform vv12.03.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,11 +52,11 @@
 <h2>Terms in Armstrong<a class="headerlink" href="#terms-in-armstrong" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>Access Level</dt>
-<dd><em>TODO</em></dd>
+<dd>An Access Level corresponds to a class of users. In the most common case, a site will have one Access Level that is free for every user and a single Access Level for paid subscribers.</dd>
 <dt>Article</dt>
 <dd>An article represents one of the core objects inside Armstrong.  It&#8217;s a title, body, summary, and additional meta data representing the articles on the site.</dd>
 <dt>Assignment</dt>
-<dd><em>TODO</em></dd>
+<dd>An Assignment defines a time period during which users posessing an Access Level are allowed to view a piece of content. They consist of a start date/time, an end date/time, a link to a particular piece of content&#8217;s access object and an Access Level</dd>
 <dt>Backends</dt>
 <dd>Backends are a callable that can be changed at run-time via configuration.  These are generally used to provide flex-points where there are multiple ways to provide the same information.</dd>
 <dt>Content</dt>
@@ -67,7 +64,7 @@
 <dt>Layout Templates</dt>
 <dd>Layout templates are templates used by the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">render_model</span> <span class="pre">%}</span></tt> template tag.  They&#8217;re found inside the <tt class="docutils literal"><span class="pre">&lt;template_path&gt;/layout/</span></tt> directory and follow the pattern of <tt class="docutils literal"><span class="pre">&lt;template_path&gt;/&lt;app_label&gt;/&lt;model&gt;/&lt;layout_name&gt;.html</span></tt>.</dd>
 <dt>Paywall</dt>
-<dd><em>TODO</em></dd>
+<dd>A paywall is a function that wraps your content detail views and ensures that all users who view a piece of content have the required Access Level. They are configurable to provide a number of different responses to an unauthorized user including redirects, rendering different templates or raising an exception.</dd>
 <dt>Related Content</dt>
 <dd>Related content is a generic way to relate two completely separate models without either model having to know about the other.  This is useful for generic code and is used throughout Armstrong.  The flexibility comes with a slight performance hit, but most sites can cache their way out of the performance hit.</dd>
 <dt>Section</dt>
@@ -124,7 +121,13 @@ armstrong.utils.backends<span class="o">==</span>1.0.0
 <dt><tt class="docutils literal"><span class="pre">armstrong.apps.images</span></tt></dt>
 <dd>Provides functionality around handling images inside Django.</dd>
 <dt><tt class="docutils literal"><span class="pre">armstrong.apps.related_content</span></tt></dt>
-<dd><strong>TODO</strong></dd>
+<dd><p class="first">Provides mechanism for relating content to other models</p>
+<p class="last">You can use <tt class="docutils literal"><span class="pre">armstrong.apps.related_content</span></tt> to link two separate models
+together through a <tt class="docutils literal"><span class="pre">GenericForeignKey</span></tt> for the <tt class="docutils literal"><span class="pre">source</span></tt> and the
+<tt class="docutils literal"><span class="pre">destination</span></tt>.  You can further organize the relationship with
+<tt class="docutils literal"><span class="pre">RelatedType</span></tt> (think: &#8220;articles&#8221;, &#8220;images&#8221;, &#8220;external_links&#8221;, and so on) and
+all relationships are ordered.</p>
+</dd>
 <dt><tt class="docutils literal"><span class="pre">armstrong.cli</span></tt></dt>
 <dd>Provides basic commands needed for Armstrong scaffolding</dd>
 <dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_access</span></tt></dt>
@@ -209,12 +212,12 @@ list of content.</p>
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex/" title="General Index"
              >index</a></li>
-        <li><a href="../../">Armstrong Platform v12.03.0 documentation</a> &raquo;</li> 
+        <li><a href="../../">Armstrong Platform vv12.03.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
     &copy; Copyright 2011, Bay Citizen and Texas Tribune.
-  Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.8.
   <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
 
 </div>
