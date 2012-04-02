@@ -101,7 +101,9 @@ The first package is the main Armstrong release.  Each of the other components a
        :end-before: Usage
 
 ``armstrong.apps.related_content``
-    **TODO**
+    .. include:: ../../vendor/armstrong.apps.related_content/README.rst
+       :start-line: 2
+       :end-before: Usage
 
 ``armstrong.cli``
     .. include:: ../../vendor/armstrong.cli/README.rst
