@@ -69,18 +69,18 @@ A fresh installation of Armstrong installs the following components:
 .. code-block:: bash
 
     $ pip freeze | grep armstrong
-    armstrong==11.12.0.1
-    armstrong.apps.articles==1.1.0
-    armstrong.apps.content==1.0.1
-    armstrong.apps.images==1.1.0
-    armstrong.apps.related-content==1.2.0
+    armstrong==12.03.0
+    armstrong.apps.articles==1.1.1
+    armstrong.apps.content==1.0.2
+    armstrong.apps.images==1.1.1
+    armstrong.apps.related-content==2.0.1
     armstrong.cli==1.1.0
-    armstrong.core.arm-access==1.0.5
-    armstrong.core.arm-content==1.0.0
-    armstrong.core.arm-layout==1.0.0
-    armstrong.core.arm-sections==1.0.1
-    armstrong.core.arm-wells==1.3.3
-    armstrong.hatband==1.2.3
+    armstrong.core.arm-access==1.0.6
+    armstrong.core.arm-content==1.3.2
+    armstrong.core.arm-layout==1.1.1
+    armstrong.core.arm-sections==1.5.3
+    armstrong.core.arm-wells==1.6.0
+    armstrong.hatband==1.2.4
     armstrong.utils.backends==1.0.0
 
 The first package is the main Armstrong release.  Each of the other components are explained below:
