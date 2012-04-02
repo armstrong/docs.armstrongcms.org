@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 
-    <title>Anatomy of Armstrong &mdash; Armstrong Platform v11.09.0 documentation</title>
+    <title>Anatomy of Armstrong &mdash; Armstrong Platform vv12.03.0 documentation</title>
 
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '11.09.0',
+        VERSION:     'v12.03.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '',
         HAS_SOURCE:  true
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
-    <link rel="top" title="Armstrong Platform v11.09.0 documentation" href="../../" /> 
+    <link rel="top" title="Armstrong Platform vv12.03.0 documentation" href="../../" /> 
   </head>
   <body>
     <div class="related">
@@ -36,7 +36,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex/" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../../">Armstrong Platform v11.09.0 documentation</a> &raquo;</li> 
+        <li><a href="../../">Armstrong Platform vv12.03.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -46,8 +46,126 @@
           <div class="body">
             
   <div class="section" id="anatomy-of-armstrong">
-<h1>Anatomy of Armstrong<a class="headerlink" href="#anatomy-of-armstrong" title="Permalink to this headline">¶</a></h1>
-<p><em>TODO</em></p>
+<span id="getting-start-anatomy"></span><h1>Anatomy of Armstrong<a class="headerlink" href="#anatomy-of-armstrong" title="Permalink to this headline">¶</a></h1>
+<p>Armstrong is a large project with a lot of moving parts.  This document introduces you to all of those parts and helps you find your around the Armstrong ecosystem.</p>
+<div class="section" id="terms-in-armstrong">
+<h2>Terms in Armstrong<a class="headerlink" href="#terms-in-armstrong" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Access Level</dt>
+<dd>An Access Level corresponds to a class of users. In the most common case, a site will have one Access Level that is free for every user and a single Access Level for paid subscribers.</dd>
+<dt>Article</dt>
+<dd>An article represents one of the core objects inside Armstrong.  It&#8217;s a title, body, summary, and additional meta data representing the articles on the site.</dd>
+<dt>Assignment</dt>
+<dd>An Assignment defines a time period during which users posessing an Access Level are allowed to view a piece of content. They consist of a start date/time, an end date/time, a link to a particular piece of content&#8217;s access object and an Access Level</dd>
+<dt>Backends</dt>
+<dd>Backends are a callable that can be changed at run-time via configuration.  These are generally used to provide flex-points where there are multiple ways to provide the same information.</dd>
+<dt>Content</dt>
+<dd>A <tt class="docutils literal"><span class="pre">Content</span></tt> model provides a base class</dd>
+<dt>Layout Templates</dt>
+<dd>Layout templates are templates used by the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">render_model</span> <span class="pre">%}</span></tt> template tag.  They&#8217;re found inside the <tt class="docutils literal"><span class="pre">&lt;template_path&gt;/layout/</span></tt> directory and follow the pattern of <tt class="docutils literal"><span class="pre">&lt;template_path&gt;/&lt;app_label&gt;/&lt;model&gt;/&lt;layout_name&gt;.html</span></tt>.</dd>
+<dt>Paywall</dt>
+<dd>A paywall is a function that wraps your content detail views and ensures that all users who view a piece of content have the required Access Level. They are configurable to provide a number of different responses to an unauthorized user including redirects, rendering different templates or raising an exception.</dd>
+<dt>Related Content</dt>
+<dd>Related content is a generic way to relate two completely separate models without either model having to know about the other.  This is useful for generic code and is used throughout Armstrong.  The flexibility comes with a slight performance hit, but most sites can cache their way out of the performance hit.</dd>
+<dt>Section</dt>
+<dd>Sections provide a the foundation for a taxonomy for Django sites.  Models opt-in to be included in sections.  Each section has a series of items that it retrieves from the configured backend.  This is generally combined with a <em>well</em> to allow &#8220;pinning&#8221; an item to the top of a section.</dd>
+<dt>Well</dt>
+<dd>Wells allow you to schedule content to appear at a given place on your site for a given time.  Wells are a particular Well Type and have zero or more Well Nodes.</dd>
+<dt>Well Type</dt>
+<dd>Well Types allow you to specify all of the wells you want to use.  A Well Type can have any number of Wells created for it, but current Well for a given Well Type has a start date in the past and either no expiration date or an expiration date in the future.</dd>
+<dt>Well Node</dt>
+<dd>Well Nodes are the connection between a Well and any model within Django.  They use a generic foreign key, but have some optimization to help remove some of the inherent inefficiency inside Django.</dd>
+</dl>
+</div>
+<div class="section" id="component-structure">
+<h2>Component Structure<a class="headerlink" href="#component-structure" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">armstrong.apps</span></tt></dt>
+<dd>Anything that starts with <tt class="docutils literal"><span class="pre">armstrong.apps</span></tt> is considered a stand-alone application in the traditional Django sense.  These occassionally have dependencies on other <tt class="docutils literal"><span class="pre">apps</span></tt> and components in the <tt class="docutils literal"><span class="pre">armstrong.core</span></tt> namespace.  These are the main entry points to functionality in Armstrong.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core</span></tt></dt>
+<dd>Anything that starts with <tt class="docutils literal"><span class="pre">armstrong.core</span></tt> is considered part of the core Armstrong system and should generally be installed on any system that&#8217;s building on top of Armstrong.  The number of models created by using <tt class="docutils literal"><span class="pre">armstrong.core</span></tt> components should be minimum.  The only <tt class="docutils literal"><span class="pre">core</span></tt> components that install models are things which can only work with data stored.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.hatband</span></tt></dt>
+<dd><p class="first">Also known as &#8220;Hatband,&#8221; <tt class="docutils literal"><span class="pre">armstrong.hatband</span></tt> is Armstrong&#8217;s drop-in replacement for Django&#8217;s built-in <tt class="docutils literal"><span class="pre">django.contrib.admin</span></tt>.  This provides some extra functionality in the admin interface and provides many custom widgets that are relied upon by various Armstrong apps.</p>
+<p class="last">Though Hatband does ship with some extra features that are meant to be used with Armstrong components, you can use Hatband within any Django project to create a better version of the Django admin.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.utils</span></tt></dt>
+<dd><tt class="docutils literal"><span class="pre">armstrong.utils</span></tt> is the catch-all namespace.  These are for entirely stand-alone components that might be used in multiple areas throughout Armstrong.  These should have limited (if any) dependencies on other parts of Armstrong outside of other <tt class="docutils literal"><span class="pre">armstrong.utils</span></tt> components and Django itself.</dd>
+</dl>
+</div>
+<div class="section" id="individual-components">
+<h2>Individual Components<a class="headerlink" href="#individual-components" title="Permalink to this headline">¶</a></h2>
+<p>A fresh installation of Armstrong installs the following components:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip freeze | grep armstrong
+<span class="nv">armstrong</span><span class="o">==</span>11.12.0.1
+armstrong.apps.articles<span class="o">==</span>1.1.0
+armstrong.apps.content<span class="o">==</span>1.0.1
+armstrong.apps.images<span class="o">==</span>1.1.0
+armstrong.apps.related-content<span class="o">==</span>1.2.0
+armstrong.cli<span class="o">==</span>1.1.0
+armstrong.core.arm-access<span class="o">==</span>1.0.5
+armstrong.core.arm-content<span class="o">==</span>1.0.0
+armstrong.core.arm-layout<span class="o">==</span>1.0.0
+armstrong.core.arm-sections<span class="o">==</span>1.0.1
+armstrong.core.arm-wells<span class="o">==</span>1.3.3
+armstrong.hatband<span class="o">==</span>1.2.3
+armstrong.utils.backends<span class="o">==</span>1.0.0
+</pre></div>
+</div>
+<p>The first package is the main Armstrong release.  Each of the other components are explained below:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">armstrong.apps.articles</span></tt></dt>
+<dd>Provides a basic Article model for Armstrong</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.apps.content</span></tt></dt>
+<dd>Provides a concrete implementation of the <tt class="docutils literal"><span class="pre">ContentBase</span></tt> model inside the
+<a class="reference external" href="https://github.com/armstrong/armstrong.core.arm_content">armstrong.core.arm_content</a> package.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.apps.images</span></tt></dt>
+<dd>Provides functionality around handling images inside Django.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.apps.related_content</span></tt></dt>
+<dd><p class="first">Provides mechanism for relating content to other models</p>
+<p class="last">You can use <tt class="docutils literal"><span class="pre">armstrong.apps.related_content</span></tt> to link two separate models
+together through a <tt class="docutils literal"><span class="pre">GenericForeignKey</span></tt> for the <tt class="docutils literal"><span class="pre">source</span></tt> and the
+<tt class="docutils literal"><span class="pre">destination</span></tt>.  You can further organize the relationship with
+<tt class="docutils literal"><span class="pre">RelatedType</span></tt> (think: &#8220;articles&#8221;, &#8220;images&#8221;, &#8220;external_links&#8221;, and so on) and
+all relationships are ordered.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.cli</span></tt></dt>
+<dd>Provides basic commands needed for Armstrong scaffolding</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_access</span></tt></dt>
+<dd>Provides a mechanism for restricting access to models inside Armstrong.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_content</span></tt></dt>
+<dd>Provides a mechanism for restricting access to models inside Armstrong.</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_layout</span></tt></dt>
+<dd><p class="first">Provides layout related code for use in Armstrong and Django projects.</p>
+<p class="last"><tt class="docutils literal"><span class="pre">arm_layout</span></tt> provides you with tools to help streamline displaying content
+from within your application.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_sections</span></tt></dt>
+<dd><p class="first">Provides the basic concept of sections within an Armstrong site.</p>
+<p>You can use <tt class="docutils literal"><span class="pre">Section</span></tt> models to organize your content into a group.  Sections
+can have a parent section to allow you to create a hierarchy.  For example, the
+<a href="#id1"><span class="problematic" id="id2">`Texas Tribune`_</span></a> has an Immigration section which in turns has Sanctuary Cities
+and Dream Act as children sections.</p>
+<p class="last">You are not limited to a hierarchical structure&#8212;you can create a flat
+structure as well.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.core.arm_wells</span></tt></dt>
+<dd><p class="first">Provides the basic content well code necessary for scheduling and arranging
+models inside Armstrong.</p>
+<p class="last">You can use wells to change the order of content.  They are meant to be
+combined with querysets to allow your users to control what appears first in a
+list of content.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.hatband</span></tt></dt>
+<dd><p class="first">Provides the basic content well code necessary for scheduling and arranging
+models inside Armstrong.</p>
+<p class="last">You can use wells to change the order of content.  They are meant to be
+combined with querysets to allow your users to control what appears first in a
+list of content.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">armstrong.utils.backends</span></tt></dt>
+<dd>Generic backend system to use throughout Armstrong</dd>
+</dl>
+</div>
 </div>
 
 
@@ -56,6 +174,16 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Anatomy of Armstrong</a><ul>
+<li><a class="reference internal" href="#terms-in-armstrong">Terms in Armstrong</a></li>
+<li><a class="reference internal" href="#component-structure">Component Structure</a></li>
+<li><a class="reference internal" href="#individual-components">Individual Components</a></li>
+</ul>
+</li>
+</ul>
+
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../../_sources/getting-started/anatomy.txt"
@@ -84,7 +212,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex/" title="General Index"
              >index</a></li>
-        <li><a href="../../">Armstrong Platform v11.09.0 documentation</a> &raquo;</li> 
+        <li><a href="../../">Armstrong Platform vv12.03.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
