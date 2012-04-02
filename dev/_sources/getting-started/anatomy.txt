@@ -69,12 +69,12 @@ A fresh installation of Armstrong installs the following components:
 .. code-block:: bash
 
     $ pip freeze | grep armstrong
-    armstrong==12.03.0
+    armstrong==12.03.1
     armstrong.apps.articles==1.1.1
     armstrong.apps.content==1.0.2
     armstrong.apps.images==1.1.1
     armstrong.apps.related-content==2.0.1
-    armstrong.cli==1.1.0
+    armstrong.cli==1.1.1
     armstrong.core.arm-access==1.0.6
     armstrong.core.arm-content==1.3.2
     armstrong.core.arm-layout==1.1.1
